@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="server">Server</string>
+    <string name="server_port">Server port</string>
+    <string name="connect">Connect</string>
+    <string name="client">Client</string>
+    <string name="client_address">Client address</string>
+    <string name="client_port">Client port</string>
+    <string name="get_time">Get Time</string>
+    <string name="time_response">Time response:</string>
+    <string name="city">City:</string>
+    <string name="get_weather_forecast">Get weather Forecast:</string>
+    <string-array name="information_types">
+        <item>Temperature</item>
+        <item>Wind Speed</item>
+        <item>Humidity</item>
+        <item>Condition</item>
+        <item>All</item>
+    </string-array>
 </resources>
