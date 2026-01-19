@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,10 @@ public class PracticalTest02 extends AppCompatActivity {
     private EditText cityEditText = null;
     private Spinner informationTypeSpinner = null;
     private Button getWeatherForecastButton = null;
+
+    private TextView weatherForecastTextView = null;
+
+    private ServerThread serverThread;
 
     private void initializeViews() {
         serverPortEditText = findViewById(R.id.server_port_edit_text);
@@ -56,7 +61,12 @@ public class PracticalTest02 extends AppCompatActivity {
             Toast.makeText(this, "Server port must be filled!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Connecting to server on port: " + serverPort, Toast.LENGTH_SHORT).show();
-            // start server here
+            int serverPortInt = Integer.parseInt(serverPort);
+
+            serverThread = new ServerThread(serverPortInt);
+            serverThread.start();
+
+            Toast.makeText(this, "Server started on port: " + serverPort, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -70,7 +80,15 @@ public class PracticalTest02 extends AppCompatActivity {
             Toast.makeText(this, "All fields must be filled!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Getting " + informationType + " for " + city + " from " + clientAddress + ":" + clientPort, Toast.LENGTH_SHORT).show();
-            // start client here
+            int clientPortInt = Integer.parseInt(clientPort);
+            ClientThread clientThread = new ClientThread(
+                    clientAddress,
+                    clientPortInt,
+                    city,
+                    informationType,
+                    weatherForecastTextView
+            );
+            clientThread.start();
         }
     }
 
@@ -83,5 +101,15 @@ public class PracticalTest02 extends AppCompatActivity {
 
         initializeViews();
         setupListeners();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Oprește serverul când se închide aplicația
+        if (serverThread != null) {
+            serverThread.stopServer();
+        }
     }
 }
