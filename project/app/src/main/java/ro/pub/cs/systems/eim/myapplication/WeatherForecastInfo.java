@@ -33,12 +33,12 @@ public class WeatherForecastInfo {
 
             JSONObject main = jsonObject.getJSONObject("main");
 
-            info.setTemperature(main.getDouble("temp") + "°C");
-            info.setHumidity(main.getInt("humidity") + "%");
-            info.setPressure(main.getInt("pressure") + " hPa");
+            info.setTemperature(main.getString("temp") + "K");
+            info.setHumidity(main.getString("humidity") + "%");
+            info.setPressure(main.getString("pressure") + " hPa");
 
             JSONObject wind = jsonObject.getJSONObject("wind");
-            info.setWindSpeed(wind.getDouble("speed") + " m/s");
+            info.setWindSpeed(wind.getString("speed") + " m/s");
 
             JSONArray weatherArray = jsonObject.getJSONArray("weather");
             JSONObject weather = weatherArray.getJSONObject(0);
@@ -98,10 +98,10 @@ public class WeatherForecastInfo {
 
     @Override
     public String toString() {
-        return "City: " + city + "\n" +
-                "Temperature: " + temperature + "\n" +
-                "Wind Speed: " + windSpeed + "\n" +
-                "Humidity: " + humidity + "\n" +
+        return "City: " + city + " | " +
+                "Temperature: " + temperature + " | " +
+                "Wind Speed: " + windSpeed + " | " +
+                "Humidity: " + humidity + " | " +
                 "Condition: " + condition;
     }
 }

@@ -36,6 +36,8 @@ public class PracticalTest02 extends AppCompatActivity {
         cityEditText = findViewById(R.id.city_edit_text);
         informationTypeSpinner = findViewById(R.id.information_type_spinner);
         getWeatherForecastButton = findViewById(R.id.get_weather_forecast_button);
+        weatherForecastTextView = findViewById(R.id.weather_forecast_text_view);
+
     }
 
     private void setupListeners() {

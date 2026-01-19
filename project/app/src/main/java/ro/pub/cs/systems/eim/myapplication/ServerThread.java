@@ -1,5 +1,7 @@
 package ro.pub.cs.systems.eim.myapplication;
 
+import android.util.Log;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,6 +21,7 @@ public class ServerThread extends Thread{
     @Override
     public void run() {
         try {
+            Log.i("ServerThread", "Starting server on port " + port);
             serverSocket = new ServerSocket(port);
             isRunning = true;
 

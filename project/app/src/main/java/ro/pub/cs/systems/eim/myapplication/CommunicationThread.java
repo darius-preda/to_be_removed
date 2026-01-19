@@ -1,5 +1,7 @@
 package ro.pub.cs.systems.eim.myapplication;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -62,6 +64,7 @@ public class CommunicationThread extends Thread {
     }
 
     private String buildResponse(WeatherForecastInfo info, String informationType) {
+        Log.i("CommunicationThread", info.toString());
         switch (informationType) {
             case Constants.TEMPERATURE:
                 return info.getTemperature();

@@ -12,7 +12,7 @@
     <string name="get_weather_forecast">Get weather Forecast:</string>
     <string-array name="information_types">
         <item>Temperature</item>
-        <item>Wind Speed</item>
+        <item>Wind_Speed</item>
         <item>Humidity</item>
         <item>Condition</item>
         <item>All</item>
